@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Circuito Eléctrico</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+    h1 { color: #333; }
+    label { display: block; margin-top: 10px; }
+    input, select { padding: 5px; width: 100%; margin-top: 5px; }
+    button { margin-top: 15px; padding: 10px; width: 100%; }
+    .resultado { margin-top: 20px; background: white; padding: 15px; border-radius: 8px; }
+    svg { display: none; margin-top: 20px; background: white; padding: 10px; border-radius: 8px; width: 100%; max-width: 600px; }
+  </style>
+</head>
+<body>
+  <h1>Simulador de Circuito Eléctrico</h1>
+  <p>Introduce los datos para calcular resistencia total, intensidad, potencia y coste.</p>
+
+  <label for="tipo">Tipo de circuito:</label>
+  <select id="tipo" onchange="mostrarEsquema()">
+    <option value="serie">Serie</option>
+    <option value="paralelo">Paralelo</option>
+  </select>
+
+  <label for="componente1">Componente 1:</label>
+  <select id="componente1">
+    <option value="resistencia">Resistencia</option>
+    <option value="bombilla">Bombilla</option>
+    <option value="motor">Motor</option>
+    <option value="led">LED</option>
+  </select>
+  <input type="number" id="r1" value="1.1" placeholder="Valor en Ω o equivalente">
+
+  <label for="componente2">Componente 2:</label>
+  <select id="componente2">
+    <option value="resistencia">Resistencia</option>
+    <option value="bombilla">Bombilla</option>
+    <option value="motor">Motor</option>
+    <option value="led">LED</option>
+  </select>
+  <input type="number" id="r2" value="2.2" placeholder="Valor en Ω o equivalente">
+
+  <label for="voltaje">Voltaje (V):</label>
+  <input type="number" id="voltaje" value="220">
+
+  <label for="tiempo">Tiempo (horas):</label>
+  <input type="number" id="tiempo" value="2">
+
+  <label for="precio">Precio energía (€/kWh):</label>
+  <input type="number" id="precio" value="0.15" step="0.01">
+
+  <button onclick="calcular()">Calcular</button>
+  <button onclick="reiniciar()">Reiniciar</button>
+  <button onclick="exportarPDF()">Exportar como PDF</button>
+
+  <div class="resultado" id="result"></div>
+
+  <script>
+    function calcular() {
+      const tipo = document.getElementById("tipo").value;
+      const V = parseFloat(document.getElementById("voltaje").value);
+      const R1 = parseFloat(document.getElementById("r1").value);
+      const R2 = parseFloat(document.getElementById("r2").value);
+      const t = parseFloat(document.getElementById("tiempo").value);
+      const precio = parseFloat(document.getElementById("precio").value);
+
+      const comp1 = document.getElementById("componente1").value;
+      const comp2 = document.getElementById("componente2").value;
+
+      if (R1 <= 0 || R2 <= 0 || V <= 0 || t <= 0 || precio < 0) {
+        document.getElementById("result").innerHTML = "<b>Error:</b> Verifica que todos los valores sean positivos.";
+        return;
+      }
+
+      let RT;
+      let paso1;
+      if (tipo === "serie") {
+        RT = R1 + R2;
+        paso1 = `RT = R1 + R2 = ${R1} + ${R2} = ${RT.toFixed(3)} Ω`;
+      } else {
+        RT = 1 / (1 / R1 + 1 / R2);
+        paso1 = `1/RT = 1/R1 + 1/R2 = ${(1/R1).toFixed(4)} + ${(1/R2).toFixed(4)} → RT = ${RT.toFixed(3)} Ω`;
+      }
+
+      const I = V / RT;
+      const P = V * I;
+      const E = (P / 1000) * t;
+      const coste = E * precio;
+
+      document.getElementById("result").innerHTML = `
+        <h3>Resultados (${tipo.toUpperCase()})</h3>
+        <p><b>Resistencia total (RT):</b> ${RT.toFixed(3)} Ω</p>
+        <p><b>Intensidad total (I):</b> ${I.toFixed(2)} A</p>
+        <p><b>Potencia total (P):</b> ${P.toFixed(2)} W (${(P/1000).toFixed(2)} kW)</p>
+        <p><b>Energía consumida (E):</b> ${E.toFixed(2)} kWh</p>
+        <p><b>Coste total:</b> ${coste.toFixed(2)} €</p>
+
+        <h4>Explicación paso a paso:</h4>
+        <ul>
+          <li><b>1. Cálculo de la resistencia total (RT):</b><br>${paso1}</li>
+          <li><b>2. Ley de Ohm para intensidad:</b><br>I = V / RT = ${V} / ${RT.toFixed(3)} = ${I.toFixed(2)} A</li>
+          <li><b>3. Potencia eléctrica:</b><br>P = V × I = ${V} × ${I.toFixed(2)} = ${P.toFixed(2)} W</li>
+          <li><b>4. Energía consumida:</b><br>E = P × t = ${P.toFixed(2)} × ${t} = ${E.toFixed(2)} kWh</li>
+          <li><b>5. Coste del consumo:</b><br>Coste = E × Precio = ${E.toFixed(2)} × ${precio} = ${coste.toFixed(2)} €</li>
+        </ul>
+      `;
+    }
+
+    function reiniciar() {
+      document.getElementById("voltaje").value = 220;
+      document.getElementById("r1").value = 1.1;
+      document.getElementById("r2").value = 2.2;
+      document.getElementById("tiempo").value = 2;
+      document.getElementById("precio").value = 0.15;
+      document.getElementById("result").innerHTML = "";
+    }
+
+    async function exportarPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const resultDiv = document.getElementById("result");
+      const tempElement = document.createElement("div");
+      tempElement.innerHTML = resultDiv.innerHTML;
+      const text = tempElement.innerText;
+      const lines = doc.splitTextToSize(text, 180);
+      doc.text(lines, 10, 10);
+      doc.save("simulacion_circuito.pdf");
+    }
+  </script>
+</body>
+</html>
