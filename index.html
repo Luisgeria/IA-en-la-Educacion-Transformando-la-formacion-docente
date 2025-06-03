@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: IA en la Educación y Formación Docente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* Using Inter as a default, Tailwind usually sets sans-serif */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Default max-width, can be overridden by Tailwind classes like max-w-xl, etc. */
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px; /* Base height sm:h-80 (320px), md:h-96 (384px) */
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 384px;
+            }
+        }
+        .bg-primary-blue { background-color: #0052D4; }
+        .text-primary-blue { color: #0052D4; }
+        .border-primary-blue { border-color: #0052D4; }
+        .bg-secondary-teal { background-color: #00A6A6; }
+        .text-secondary-teal { color: #00A6A6; }
+        .bg-accent-light-blue { background-color: #6FB1FC; }
+        .text-accent-light-blue { color: #6FB1FC; }
+        .bg-neutral-dark-gray { background-color: #333333; }
+        .text-neutral-dark-gray { color: #333333; }
+        .bg-neutral-light-gray { background-color: #F0F0F0; }
+
+        .sticky-nav {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .section-title::before {
+            content: '';
+            display: block;
+            height: 70px; 
+            margin-top: -70px;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body class="bg-neutral-light-gray text-neutral-dark-gray">
+
+    <!-- INFOGRAPHIC_NARRATIVE_PLAN 
+        Section 1: Panorama Actual y Tendencias Emergentes en IA Educativa (Based on Report Sec 1 & 2)
+        Section 2: El Nuevo Ecosistema Docente: Adaptación y Competencias Clave en IA (Based on Report Sec 2 & 3)
+        Section 3: Mercado de Herramientas IA: Impulsores de la Práctica Pedagógica (Based on Report Sec 4)
+        Section 4: Entorno Regulatorio y Ético: Navegando la IA en Educación (Based on Report Sec 5 & 6)
+        Section 5: Prospectiva y Estrategia: Hacia la Formación Docente del Futuro en IA (Based on Report Sec 7)
+    -->
+    <!-- VISUALIZATION_CHOICES
+        1.1: Beneficios Clave de la IA. Goal: Inform. Viz: HTML/CSS cards. Justification: Clear presentation of benefits. NO SVG.
+        1.2: Desafíos Fundamentales. Goal: Inform. Viz: HTML/CSS cards. Justification: Clear presentation of challenges. NO SVG.
+        2.1: Marco UNESCO Competencias. Goal: Organize. Viz: HTML/CSS cards. Justification: Clearly presents 5 key areas. NO SVG.
+        2.2: Niveles de Progresión. Goal: Organize. Viz: Styled HTML Table. Justification: Best for structured tabular data. NO SVG.
+        3.1: Categorías Herramientas IA. Goal: Compare. Viz: Chart.js Bar Chart. Justification: Shows distribution of tool types. Canvas. NO SVG.
+        3.2: Ejemplos Herramientas Destacadas. Goal: Inform. Viz: HTML/CSS grid. Justification: Highlights specific tools. NO SVG.
+        4.1: Ley de IA UE: Niveles de Riesgo. Goal: Organize. Viz: Styled HTML Table. Justification: Direct and clear legal info. NO SVG.
+        4.2: Principios Éticos Clave. Goal: Inform. Viz: HTML/CSS cards. Justification: Highlights key ethical principles. NO SVG.
+        4.3: Buenas Prácticas Uso Ético. Goal: Organize. Viz: Styled HTML List. Justification: Actionable guidelines. NO SVG.
+        5.1: Estructura Programa Formación. Goal: Organize. Viz: HTML/CSS Flow Chart. Justification: Shows program structure. NO SVG.
+        5.2: Mecanismos Actualización. Goal: Inform. Viz: HTML/CSS cards. Justification: Outlines program currency. NO SVG.
+        5.3: Recomendaciones Clave. Goal: Inform. Viz: HTML/CSS List/Callouts. Justification: Clear calls to action. NO SVG.
+    -->
+    <header class="bg-primary-blue text-white p-6 shadow-lg">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl md:text-4xl font-bold">IA en la Educación: Transformando la Formación Docente</h1>
+            <p class="mt-2 text-lg">Un análisis de tendencias, herramientas, competencias y el marco ético-legal.</p>
+        </div>
+    </header>
+
+    <nav class="sticky-nav bg-white shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center items-center py-2 text-sm md:text-base">
+                <a href="#section1" class="text-primary-blue hover:text-secondary-teal px-3 py-2 rounded-md font-medium">Panorama IA</a>
+                <a href="#section2" class="text-primary-blue hover:text-secondary-teal px-3 py-2 rounded-md font-medium">Rol Docente</a>
+                <a href="#section3" class="text-primary-blue hover:text-secondary-teal px-3 py-2 rounded-md font-medium">Herramientas</a>
+                <a href="#section4" class="text-primary-blue hover:text-secondary-teal px-3 py-2 rounded-md font-medium">Ética y Ley</a>
+                <a href="#section5" class="text-primary-blue hover:text-secondary-teal px-3 py-2 rounded-md font-medium">Futuro Formación</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="section1" class="mb-12 section-title">
+            <h2 class="text-3xl font-bold text-primary-blue mb-6 text-center">Panorama Actual y Tendencias Emergentes en IA Educativa</h2>
+            <p class="text-lg mb-8 text-center max-w-3xl mx-auto">La Inteligencia Artificial (IA) se está consolidando como una fuerza transformadora en el sector educativo, prometiendo personalizar el aprendizaje y optimizar procesos. Sin embargo, su implementación conlleva beneficios significativos y desafíos cruciales que deben ser abordados estratégicamente para asegurar una integración equitativa y efectiva.</p>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-2xl font-semibold text-secondary-teal mb-4 text-center">🚀 Beneficios Clave de la IA</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>Automatización de tareas:</strong> Liberación de tiempo docente para la interacción directa con estudiantes.</li>
+                        <li><strong>Personalización del aprendizaje:</strong> Adaptación de contenidos y ritmos a las necesidades individuales.</li>
+                        <li><strong>Retroalimentación instantánea:</strong> Comentarios detallados para una mejora continua del aprendizaje.</li>
+                        <li><strong>Mejora de la accesibilidad:</strong> Apoyo a la diversidad y a estudiantes con necesidades especiales.</li>
+                        <li><strong>Aumento de la creatividad y productividad:</strong> Asistencia inteligente para la innovación pedagógica.</li>
+                    </ul>
+                    <p class="mt-4 text-sm text-gray-600">Estos beneficios abren la puerta a una educación más eficiente, inclusiva y motivadora, donde la tecnología potencia las capacidades humanas.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-2xl font-semibold text-red-500 mb-4 text-center">⚠️ Desafíos Fundamentales</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>Privacidad y protección de datos:</strong> Necesidad de marcos robustos para la gestión de datos sensibles.</li>
+                        <li><strong>Sesgo algorítmico y equidad:</strong> Riesgo de replicar y amplificar desigualdades existentes.</li>
+                        <li><strong>Conducta académica y originalidad:</strong> Nuevos interrogantes sobre el plagio en la era de la IA generativa.</li>
+                        <li><strong>Interacción humana y habilidades socioemocionales:</strong> Evitar la disminución del contacto humano esencial.</li>
+                        <li><strong>Brecha digital y costos:</strong> Asegurar el acceso equitativo y la sostenibilidad financiera.</li>
+                    </ul>
+                    <p class="mt-4 text-sm text-gray-600">Abordar estos desafíos es vital para que la IA sirva genuinamente al propósito de una educación de calidad para todos.</p>
+                </div>
+            </div>
+            <p class="text-md text-center text-gray-700 italic">La "alfabetización en IA" emerge como una competencia crucial, capacitando a los docentes para navegar este panorama dual, evaluando críticamente las herramientas y mitigando riesgos de manera informada.</p>
+        </section>
+
+        <section id="section2" class="mb-12 section-title">
+            <h2 class="text-3xl font-bold text-primary-blue mb-6 text-center">El Nuevo Ecosistema Docente: Adaptación y Competencias Clave en IA</h2>
+            <p class="text-lg mb-8 text-center max-w-3xl mx-auto">La IA no reemplaza al docente, sino que transforma su rol. Pasa de ser un transmisor de información a un facilitador, guía crítico y "coach de IA", enfocándose en el desarrollo de habilidades humanas fundamentales. Esto exige un nuevo conjunto de competencias, alineadas con marcos internacionales como el de la UNESCO.</p>
+
+            <div class="bg-white p-6 rounded-lg shadow-xl mb-8">
+                <h3 class="text-2xl font-semibold text-secondary-teal mb-6 text-center">🌟 Marco de Competencias UNESCO para Docentes en IA</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-4 border border-accent-light-blue rounded-lg bg-blue-50">
+                        <h4 class="font-bold text-lg text-primary-blue">1. Mentalidad Centrada en el Ser Humano</h4>
+                        <p class="text-sm text-gray-700 mt-1">Priorizar derechos humanos, autonomía y bienestar social. Fomentar la reflexión crítica sobre la IA.</p>
+                    </div>
+                    <div class="p-4 border border-accent-light-blue rounded-lg bg-blue-50">
+                        <h4 class="font-bold text-lg text-primary-blue">2. Ética de la IA</h4>
+                        <p class="text-sm text-gray-700 mt-1">Aplicar principios de seguridad, privacidad y responsabilidad. Educar en privacidad digital.</p>
+                    </div>
+                    <div class="p-4 border border-accent-light-blue rounded-lg bg-blue-50">
+                        <h4 class="font-bold text-lg text-primary-blue">3. Fundamentos y Aplicaciones</h4>
+                        <p class="text-sm text-gray-700 mt-1">Comprender cómo funciona la IA y seleccionar herramientas adecuadas para fines pedagógicos.</p>
+                    </div>
+                    <div class="p-4 border border-accent-light-blue rounded-lg bg-blue-50">
+                        <h4 class="font-bold text-lg text-primary-blue">4. Pedagogía de la IA</h4>
+                        <p class="text-sm text-gray-700 mt-1">Integrar la IA en estrategias de enseñanza, planificación y evaluación de forma innovadora.</p>
+                    </div>
+                    <div class="p-4 border border-accent-light-blue rounded-lg bg-blue-50 sm:col-span-2 lg:col-span-1 lg:col-start-2">
+                        <h4 class="font-bold text-lg text-primary-blue">5. IA para el Desarrollo Profesional</h4>
+                        <p class="text-sm text-gray-700 mt-1">Utilizar la IA para el aprendizaje continuo y la mejora colaborativa de la práctica docente.</p>
+                    </div>
+                </div>
+                 <p class="mt-6 text-sm text-gray-600 text-center">Estas competencias, alineadas con la LOMLOE, son esenciales para que los educadores lideren la integración responsable de la IA.</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-xl">
+                <h3 class="text-2xl font-semibold text-secondary-teal mb-4 text-center">📈 Niveles de Progresión en Competencias de IA</h3>
+                <p class="mb-6 text-center text-gray-700">La adquisición de competencias en IA es un viaje continuo. A continuación, se muestra una tabla simplificada que ilustra esta progresión, inspirada en el marco de la UNESCO.</p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Área de Competencia</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nivel Inicial</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nivel Intermedio</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nivel Avanzado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                            <tr>
+                                <td class="px-4 py-3 font-medium text-gray-900">Mentalidad Humana</td>
+                                <td class="px-4 py-3 text-gray-700">Interés básico, reconoce supervisión.</td>
+                                <td class="px-4 py-3 text-gray-700">Aplica IA para personalizar, asegura comprensión.</td>
+                                <td class="px-4 py-3 text-gray-700">Diseña y lidera soluciones IA que priorizan derechos.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 font-medium text-gray-900">Ética de la IA</td>
+                                <td class="px-4 py-3 text-gray-700">Reconoce dilemas éticos.</td>
+                                <td class="px-4 py-3 text-gray-700">Analiza críticamente casos, debate implicaciones.</td>
+                                <td class="px-4 py-3 text-gray-700">Desarrolla proyectos que abordan problemas éticos.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 font-medium text-gray-900">Fundamentos y App</td>
+                                <td class="px-4 py-3 text-gray-700">Comprende conceptos básicos de IA.</td>
+                                <td class="px-4 py-3 text-gray-700">Aplica conocimientos IA, usa herramientas.</td>
+                                <td class="px-4 py-3 text-gray-700">Integra IA en currículo, lidera proyectos.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="mt-4 text-sm text-gray-600 text-center">Un programa de formación modular y flexible es clave para apoyar a los docentes en cada etapa de este desarrollo.</p>
+            </div>
+        </section>
+
+        <section id="section3" class="mb-12 section-title">
+            <h2 class="text-3xl font-bold text-primary-blue mb-6 text-center">Mercado de Herramientas IA: Impulsores de la Práctica Pedagógica</h2>
+            <p class="text-lg mb-8 text-center max-w-3xl mx-auto">Existe una vasta gama de herramientas de IA, muchas gratuitas o freemium, que pueden transformar la planificación, creación de contenido, evaluación y más. Es crucial que los docentes aprendan a discernir y seleccionar aquellas que mejor se alineen con sus objetivos pedagógicos y éticos.</p>
+            
+            <div class="bg-white p-6 rounded-lg shadow-xl mb-8">
+                <h3 class="text-2xl font-semibold text-secondary-teal mb-4 text-center">📊 Distribución de Herramientas IA por Función Pedagógica</h3>
+                <p class="mb-6 text-center text-gray-700">El siguiente gráfico muestra la cantidad de herramientas ejemplo mencionadas en el informe, agrupadas por su función principal en el ámbito educativo.</p>
+                <div class="chart-container">
+                    <canvas id="toolsChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-gray-600 text-center">La IA ofrece soporte en casi todas las fases del ciclo de enseñanza-aprendizaje, indicando un potencial transformador profundo.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-xl">
+                <h3 class="text-2xl font-semibold text-secondary-teal mb-6 text-center">🛠️ Ejemplos Destacados de Herramientas de IA</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+                        <p class="text-2xl text-center mb-2">📝</p>
+                        <h4 class="font-semibold text-lg text-primary-blue text-center">Planificación y Creación</h4>
+                        <p class="text-sm text-gray-600 mt-1 text-center">Planeo, Edcafe AI, Gemini, ChatGPT, Claude, Slidesai.io, Gamma, DALL-E.</p>
+                    </div>
+                    <div class="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+                         <p class="text-2xl text-center mb-2">🔍</p>
+                        <h4 class="font-semibold text-lg text-primary-blue text-center">Evaluación y Retroalimentación</h4>
+                        <p class="text-sm text-gray-600 mt-1 text-center">Yippity, Questionwell, ClassPoint AI, Gradescope, Socrative, Megaprofe.</p>
+                    </div>
+                    <div class="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+                         <p class="text-2xl text-center mb-2">⚙️</p>
+                        <h4 class="font-semibold text-lg text-primary-blue text-center">Soporte y Organización</h4>
+                        <p class="text-sm text-gray-600 mt-1 text-center">Notion AI, Mendeley, Otter.ai, Grammarly, DeepL, Capcut.</p>
+                    </div>
+                </div>
+                <p class="mt-6 text-sm text-gray-600 text-center">La formación debe ir más allá del uso individual, enseñando cómo interconectar herramientas para optimizar procesos pedagógicos completos.</p>
+            </div>
+        </section>
+
+        <section id="section4" class="mb-12 section-title">
+            <h2 class="text-3xl font-bold text-primary-blue mb-6 text-center">Entorno Regulatorio y Ético: Navegando la IA en Educación</h2>
+            <p class="text-lg mb-8 text-center max-w-3xl mx-auto">La IA en educación, especialmente los sistemas de "alto riesgo" según la Ley de IA de la UE, exige un cumplimiento normativo estricto y una profunda reflexión ética. La alfabetización en IA se vuelve una obligación legal y moral.</p>
+
+            <div class="bg-white p-6 rounded-lg shadow-xl mb-8">
+                <h3 class="text-2xl font-semibold text-secondary-teal mb-4 text-center">📜 Ley de IA de la UE: Implicaciones para la Educación</h3>
+                 <p class="mb-6 text-center text-gray-700">Esta ley clasifica los sistemas de IA según su riesgo, imponiendo obligaciones específicas para proteger los derechos fundamentales.</p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nivel de Riesgo</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ejemplos en Educación</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Obligaciones/Prohibiciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                            <tr class="bg-red-50">
+                                <td class="px-4 py-3 font-medium text-red-700">Inaceptable</td>
+                                <td class="px-4 py-3 text-gray-700">Reconocimiento de emociones en aulas, puntuación social.</td>
+                                <td class="px-4 py-3 text-gray-700"><strong>Prohibición total</strong> de prácticas manipuladoras o explotadoras.</td>
+                            </tr>
+                            <tr class="bg-orange-50">
+                                <td class="px-4 py-3 font-medium text-orange-700">Alto Riesgo</td>
+                                <td class="px-4 py-3 text-gray-700">Sistemas de admisión, evaluación de exámenes, monitoreo.</td>
+                                <td class="px-4 py-3 text-gray-700">Evaluación de riesgos, calidad de datos, supervisión humana, transparencia.</td>
+                            </tr>
+                            <tr class="bg-yellow-50">
+                                <td class="px-4 py-3 font-medium text-yellow-700">Riesgo Limitado</td>
+                                <td class="px-4 py-3 text-gray-700">Chatbots educativos, generadores de contenido (deepfakes).</td>
+                                <td class="px-4 py-3 text-gray-700">Obligación de transparencia (informar que es IA).</td>
+                            </tr>
+                             <tr class="bg-green-50">
+                                <td class="px-4 py-3 font-medium text-green-700">Mínimo/Nulo</td>
+                                <td class="px-4 py-3 text-gray-700">Videojuegos educativos con IA, filtros de spam.</td>
+                                <td class="px-4 py-3 text-gray-700">Sin requisitos regulatorios adicionales específicos.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="mt-4 text-sm text-gray-600">Es crucial que los docentes comprendan estas implicaciones para garantizar un uso legal y seguro de la IA.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-xl mb-8">
+                <h3 class="text-2xl font-semibold text-secondary-teal mb-6 text-center">🤝 Principios Éticos Clave (UNESCO/UE)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-4 bg-blue-50 rounded-lg border border-accent-light-blue">
+                        <h4 class="font-bold text-lg text-primary-blue">Agencia Humana</h4>
+                        <p class="text-sm text-gray-700 mt-1">La IA debe apoyar, no suplantar, la toma de decisiones y el desarrollo intelectual humano.</p>
+                    </div>
+                    <div class="p-4 bg-blue-50 rounded-lg border border-accent-light-blue">
+                        <h4 class="font-bold text-lg text-primary-blue">Equidad y No Discriminación</h4>
+                        <p class="text-sm text-gray-700 mt-1">Garantizar trato justo, igualdad de acceso y mitigar sesgos algorítmicos.</p>
+                    </div>
+                    <div class="p-4 bg-blue-50 rounded-lg border border-accent-light-blue">
+                        <h4 class="font-bold text-lg text-primary-blue">Humanidad y Bienestar</h4>
+                        <p class="text-sm text-gray-700 mt-1">Respetar la integridad, dignidad y la conexión humana significativa.</p>
+                    </div>
+                    <div class="p-4 bg-blue-50 rounded-lg border border-accent-light-blue">
+                        <h4 class="font-bold text-lg text-primary-blue">Transparencia y Elección Justificada</h4>
+                        <p class="text-sm text-gray-700 mt-1">Uso de datos y modelos comprensibles para justificar decisiones.</p>
+                    </div>
+                </div>
+                <p class="mt-6 text-sm text-gray-600 text-center">La formación debe cultivar una "brújula ética" para aplicar estos principios en un entorno tecnológico cambiante.</p>
+            </div>
+
+             <div class="bg-white p-6 rounded-lg shadow-xl">
+                <h3 class="text-2xl font-semibold text-secondary-teal mb-4 text-center">💡 Buenas Prácticas para un Uso Ético y Responsable de la IA</h3>
+                 <ol class="list-decimal list-inside space-y-3 text-gray-700 pl-4">
+                    <li><strong>Conocer las herramientas:</strong> Comprender funcionalidades, limitaciones y alineación con necesidades.</li>
+                    <li><strong>Personalizar con supervisión humana:</strong> Mantener el control e interpretación docente.</li>
+                    <li><strong>Mantener el control docente:</strong> La IA es un apoyo, el docente es el protagonista.</li>
+                    <li><strong>Fomentar la creatividad:</strong> Usar la IA para inspirar, no para limitar el pensamiento original.</li>
+                    <li><strong>Educar en ética digital:</strong> Enseñar sobre privacidad, sesgos e integridad.</li>
+                    <li><strong>Combatir el sesgo:</strong> Revisar críticamente el contenido generado por IA.</li>
+                    <li><strong>Retroalimentación complementaria:</strong> Combinar IA con observaciones humanas.</li>
+                    <li><strong>Involucrar a los padres:</strong> Mantener informadas a las familias.</li>
+                    <li><strong>Mantenerse a la vanguardia:</strong> Estar informado sobre tendencias y nuevas herramientas.</li>
+                </ol>
+                <p class="mt-4 text-sm text-gray-600 text-center">Estas prácticas son fundamentales para integrar la IA de manera que beneficie a todos y preserve los valores educativos.</p>
+            </div>
+        </section>
+
+        <section id="section5" class="mb-12 section-title">
+            <h2 class="text-3xl font-bold text-primary-blue mb-6 text-center">Prospectiva y Estrategia: Hacia la Formación Docente del Futuro en IA</h2>
+            <p class="text-lg mb-8 text-center max-w-3xl mx-auto">Una formación docente integral, modular y continua es crucial. El programa propuesto en el informe busca capacitar al profesorado para una integración efectiva, ética y legal de la IA, abordando fundamentos, herramientas, legislación y ética.</p>
+
+            <div class="bg-white p-6 rounded-lg shadow-xl mb-8">
+                <h3 class="text-2xl font-semibold text-secondary-teal mb-6 text-center">🧩 Estructura del Programa de Formación Propuesto</h3>
+                <p class="text-center mb-6 text-gray-700">El programa se organiza en módulos interconectados, desde los fundamentos hasta el liderazgo pedagógico.</p>
+                <div class="flex flex-col md:flex-row md:space-x-2 space-y-2 md:space-y-0 items-stretch justify-center">
+                    <div class="flex-1 p-3 bg-blue-100 border-l-4 border-primary-blue rounded text-center">Módulo 1: Fundamentos (2 ECTS)</div>
+                    <div class="hidden md:flex items-center text-primary-blue text-2xl">&rarr;</div>
+                    <div class="flex-1 p-3 bg-blue-100 border-l-4 border-primary-blue rounded text-center">Módulo 2: Herramientas (4 ECTS)</div>
+                    <div class="hidden md:flex items-center text-primary-blue text-2xl">&rarr;</div>
+                    <div class="flex-1 p-3 bg-blue-100 border-l-4 border-primary-blue rounded text-center">Módulo 3: Legislación (2 ECTS)</div>
+                </div>
+                 <div class="flex flex-col md:flex-row md:space-x-2 space-y-2 md:space-y-0 items-stretch justify-center mt-2 md:mt-4">
+                    <div class="flex-1 p-3 bg-blue-100 border-l-4 border-primary-blue rounded text-center">Módulo 4: Ética (3 ECTS)</div>
+                     <div class="hidden md:flex items-center text-primary-blue text-2xl">&rarr;</div>
+                    <div class="flex-1 p-3 bg-blue-100 border-l-4 border-primary-blue rounded text-center">Módulo 5: Diseño y Liderazgo (3 ECTS)</div>
+                </div>
+                <p class="mt-6 text-sm text-gray-600 text-center">Cada módulo combina teoría con práctica intensiva, proyectos aplicados y debates éticos.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                 <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-2xl font-semibold text-secondary-teal mb-4 text-center">🔄 Mecanismos de Actualización Constante</h3>
+                     <ul class="list-none space-y-3">
+                        <li class="flex items-start p-3 bg-gray-50 rounded-md">
+                            <span class="text-accent-light-blue text-xl mr-3">💡</span>
+                            <div><strong class="text-primary-blue">Módulos periódicos:</strong> Cursos cortos y webinars sobre últimas tendencias.</div>
+                        </li>
+                        <li class="flex items-start p-3 bg-gray-50 rounded-md">
+                            <span class="text-accent-light-blue text-xl mr-3">💬</span>
+                            <div><strong class="text-primary-blue">Comunidades de práctica:</strong> Foros online para intercambio continuo.</div>
+                        </li>
+                         <li class="flex items-start p-3 bg-gray-50 rounded-md">
+                            <span class="text-accent-light-blue text-xl mr-3">📚</span>
+                            <div><strong class="text-primary-blue">Recursos actualizados:</strong> Acceso a bibliografía y bases de datos.</div>
+                        </li>
+                        <li class="flex items-start p-3 bg-gray-50 rounded-md">
+                            <span class="text-accent-light-blue text-xl mr-3">🔬</span>
+                            <div><strong class="text-primary-blue">Colaboración experta:</strong> Alianzas con centros de investigación.</div>
+                        </li>
+                    </ul>
+                    <p class="mt-4 text-sm text-gray-600 text-center">Estos mecanismos aseguran la relevancia del programa a largo plazo.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-2xl font-semibold text-secondary-teal mb-4 text-center">🎯 Recomendaciones Clave para Instituciones</h3>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                        <li><strong>Priorizar la formación docente en IA</strong> como pilar del desarrollo profesional.</li>
+                        <li>Adoptar un <strong>enfoque holístico</strong> (herramientas, pedagogía, ley, ética).</li>
+                        <li>Fomentar la <strong>alfabetización en IA</strong> crítica en docentes y estudiantes.</li>
+                        <li>Establecer <strong>mecanismos de actualización continua</strong> para la formación.</li>
+                        <li><strong>Colaborar con la investigación y el desarrollo</strong> en IA.</li>
+                    </ol>
+                    <p class="mt-4 text-sm text-gray-600 text-center">Empoderar a los docentes es clave para una IA al servicio de una educación de calidad y centrada en el ser humano.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-neutral-dark-gray text-white text-center p-6 mt-12">
+        <p>&copy; 2025 Infografía sobre IA en Educación. Basado en el informe de formación docente.</p>
+        <p class="text-xs mt-1">Este es un ejemplo de visualización y no constituye asesoramiento profesional.</p>
+    </footer>
+
+    <script>
+        function wrapLabels(label, maxWidth) {
+            if (typeof label !== 'string' || label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = word + ' ';
+                } else {
+                    currentLine += word + ' ';
+                }
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const tooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        // Chart for Tools Distribution
+        const toolsCtx = document.getElementById('toolsChart').getContext('2d');
+        const toolDataLabels = [
+            'Planificación Lecciones', 
+            'Creación Contenido (Texto)', 
+            'Creación Contenido (Multimedia)', 
+            'Evaluación Formativa', 
+            'Evaluación Sumativa', 
+            'Retroalimentación', 
+            'Gamificación', 
+            'Aprendizaje Idiomas', 
+            'Accesibilidad', 
+            ['Soporte Admin.', 'y Organización']
+        ];
+
+        const processedToolDataLabels = toolDataLabels.map(label => {
+            if (Array.isArray(label)) return label; // Already wrapped
+            return wrapLabels(label, 16);
+        });
+
+        new Chart(toolsCtx, {
+            type: 'bar',
+            data: {
+                labels: processedToolDataLabels,
+                datasets: [{
+                    label: 'Nº de Herramientas Ejemplo',
+                    data: [3, 3, 7, 4, 5, 2, 2, 2, 2, 5],
+                    backgroundColor: [
+                        '#0052D4', '#0065D4', '#0079D4', '#008DD4', '#00A2D4',
+                        '#00A6A6', '#20B0B0', '#40BABA', '#60C4C4', '#80CECE'
+                    ],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#333333'
+                        },
+                        grid: {
+                            color: '#DDDDDD'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#333333',
+                            maxRotation: 70,
+                            minRotation: 45
+                        },
+                         grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false 
+                    },
+                    title: {
+                        display: true,
+                        text: 'Herramientas de IA por Función Pedagógica',
+                        color: '#333333',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Smooth scroll for navigation
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                     targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
